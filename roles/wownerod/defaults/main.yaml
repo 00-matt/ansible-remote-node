@@ -1,0 +1,8 @@
+---
+wownerod_remote_url: "https://distfiles.offtopica.uk/wownerod-0.8.0.2"
+wownerod_remote_hash: "sha256:ac7bba8924d43dfc9e9cf868737ebebc68591fdc17273cd0b3b9216e959fb0bc"
+wownero_version: "0.8.0.2"
+wownero_bin_dir: "/usr/local/bin"
+wownerod_path: "{{ wownero_bin_dir }}/wownerod"
+wownerod_p2p_port: "34567"
+wownerod_rpc_port: "34568"

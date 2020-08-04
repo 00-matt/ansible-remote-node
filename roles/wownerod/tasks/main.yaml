@@ -1,0 +1,65 @@
+---
+- name: Install ufw
+  apt: name=ufw state=present
+  tags: firewall
+- name: Limit ssh
+  ufw: rule=limit port=ssh proto=tcp
+  tags: firewall
+- name: Enable ufw
+  ufw: state=enabled
+  tags: firewall
+- name: Check if wownerod is installed
+  stat: path="{{ wownerod_path }}"
+  register: stat_wownerod_path
+- name: Check wownerod version
+  command: "{{ wownerod_path }} --version"
+  register: wownerod_version_cmd
+  when: stat_wownerod_path.stat.exists
+- name: Parse wownerod version
+  set_fact:
+    installed_wownerod_version: "{{ wownerod_version_cmd.stdout | regex_search('\\d+\\.\\d+\\.\\d+\\.\\d') }}"
+  when: stat_wownerod_path.stat.exists
+- name: Install wownerod
+  import_tasks: install.yaml
+  when: not stat_wownerod_path.stat.exists or not installed_wownerod_version == wownero_version
+- name: Create wownero user
+  user:
+    name: wownero
+    create_home: no
+    home: /var/lib/wownero
+    shell: /bin/false
+    system: yes
+- name: Install systemd unit file
+  template:
+    src: wownerod.service.j2
+    dest: /etc/systemd/system/wownerod.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart wownerod
+- name: Install wownerod config file
+  template:
+    src: wownerod.conf.j2
+    dest: /etc/wownerod.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart wownerod
+- name: Allow wownerod p2p port
+  ufw:
+    rule: allow
+    port: "{{ wownerod_p2p_port }}"
+    proto: tcp
+  tags: firewall
+- name: Allow wownerod rpc port
+  ufw:
+    rule: allow
+    port: "{{ wownerod_rpc_port }}"
+    proto: tcp
+  tags: firewall
+- name: Enable wownerod service
+  systemd:
+    name: wownerod.service
+    enabled: true

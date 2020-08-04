@@ -1,0 +1,11 @@
+---
+- name: Download release binary
+  get_url:
+    url: "{{ wownerod_remote_url }}"
+    dest: "{{ wownerod_path }}"
+    checksum: "{{ wownerod_remote_hash }}"
+    owner: root
+    group: root
+    mode: '0755'
+  notify:
+    - restart wownerod

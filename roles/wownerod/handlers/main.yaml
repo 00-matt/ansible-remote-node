@@ -1,0 +1,6 @@
+---
+- name: restart wownerod
+  systemd:
+    daemon_reload: yes
+    name: wownerod.service
+    state: restarted
