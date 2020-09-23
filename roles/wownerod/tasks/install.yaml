@@ -1,11 +1,20 @@
 ---
-- name: Download release binary
+- name: Download release tarball
   get_url:
-    url: "{{ wownerod_remote_url }}"
-    dest: "{{ wownerod_path }}"
-    checksum: "{{ wownerod_remote_hash }}"
+    url: "{{ wownero_remote_url }}"
+    dest: "/tmp/wownero-linux-v{{ wownero_version }}.tar.bz2"
+    checksum: "{{ wownero_remote_hash }}"
     owner: root
     group: root
     mode: '0755'
+- name: Extract wownerod
+  unarchive:
+    remote_src: yes
+    src: "/tmp/wownero-linux-v{{ wownero_version }}.tar.bz2"
+    dest: "{{ wownero_bin_dir }}"
+    extra_opts:
+      - "--strip-components=1"
+      - "--add-file"
+      - "wownero-linux-v{{ wownero_version }}/wownerod"
   notify:
     - restart wownerod

@@ -1,7 +1,7 @@
 ---
-wownerod_remote_url: "https://distfiles.offtopica.uk/wownerod-0.8.0.2"
-wownerod_remote_hash: "sha256:ac7bba8924d43dfc9e9cf868737ebebc68591fdc17273cd0b3b9216e959fb0bc"
-wownero_version: "0.8.0.2"
+wownero_remote_url: 'https://git.wownero.com/attachments/46245bde-cd00-4cf8-983a-bf21f3e574e3'
+wownero_remote_hash: 'sha256:40724396be555ad0d08a4263d83ec6e4dbfbb6d29116c40773eaf681a6faa215'
+wownero_version: "0.9.0.0"
 wownero_bin_dir: "/usr/local/bin"
 wownerod_path: "{{ wownero_bin_dir }}/wownerod"
 wownerod_p2p_port: "34567"
