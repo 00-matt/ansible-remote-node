@@ -10,7 +10,6 @@ Environment="MONERO_RANDOMX_UMASK=1"
 StateDirectory=wownero
 LogsDirectory=wownero
 Type=simple
-PIDFile=/run/wownero/wownerod.pid
 ExecStart={{ wownerod_path }} --config-file /etc/wownerod.conf --non-interactive
 
 [Install]
