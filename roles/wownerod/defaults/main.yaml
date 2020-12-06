@@ -1,7 +1,7 @@
 ---
-wownero_remote_url: 'https://git.wownero.com/attachments/d37154e8-0210-447e-b219-be9ddfdddc67'
-wownero_remote_hash: 'sha256:499ba7a3e1f75f23ea7f7a03e75ef801541698a3045d728daf41b71d4fd65a38'
-wownero_version: "0.9.0.2"
+wownero_remote_url: 'https://git.wownero.com/attachments/64e4a11c-cdce-42de-b551-5f533fe42d48'
+wownero_remote_hash: 'sha256:d93b77c897ece24669caf448b056a2c80eb4363ae147743d3d365ad1c7d469ff'
+wownero_version: "0.9.1.0"
 wownero_bin_dir: "/usr/local/bin"
 wownerod_path: "{{ wownero_bin_dir }}/wownerod"
 wownerod_p2p_port: "34567"

@@ -14,7 +14,8 @@
     dest: "{{ wownero_bin_dir }}"
     extra_opts:
       - "--strip-components=1"
+      - "--wildcards"
       - "--add-file"
-      - "wownero-x86_64-linux-gnu-v{{ wownero_version }}/wownerod"
+      - "wownero-*/wownerod"
   notify:
     - restart wownerod
