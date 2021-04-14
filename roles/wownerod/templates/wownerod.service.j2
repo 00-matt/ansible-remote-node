@@ -11,6 +11,7 @@ StateDirectory=wownero
 LogsDirectory=wownero
 Type=simple
 ExecStart={{ wownerod_path }} --config-file /etc/wownerod.conf --non-interactive
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
